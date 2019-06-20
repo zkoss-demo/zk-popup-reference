@@ -1,0 +1,41 @@
+.highlight {
+    background-color: SteelBlue;
+    color: white;
+}
+.detachable {
+    cursor: pointer;
+    position: relative;
+    outline: 2px solid FireBrick;
+}
+.detachable::before {
+    background-color: Salmon;
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+    opacity: 0.2;
+}
+.detachable::after {
+    display: block;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 50%;
+    right: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    border-radius: 50%;
+
+    background-color: FireBrick;
+    color: white;
+    font-family: FontAwesome;
+    content: '\f00d';
+    font-size: 2rem;
+    line-height: 50px;
+    text-align: center;
+    z-index: 2;
+}

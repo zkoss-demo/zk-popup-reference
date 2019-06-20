@@ -1,16 +1,5 @@
 apply plugin: 'war'
 
-//gretty
-buildscript {
-	repositories { jcenter() }
-	dependencies { classpath 'org.gretty:gretty:+' }
-}
-apply plugin: 'org.gretty'
-gretty {
-	servletContainer = 'jetty9.4' //jetty7, jetty8, jetty9, jetty9.3, jetty9.4
-	httpsEnabled = true
-}
-
 // In this section you declare where to find the dependencies of your project
 repositories {
 //	maven {
@@ -25,11 +14,10 @@ repositories {
 	maven { url "http://mavensync.zkoss.org/eval" }
     maven { url "http://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/" } //for jasper reports
 	mavenCentral()
-	jcenter() //for gretty
 }
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 sourceSets {
 	jettyRunner {
@@ -41,17 +29,12 @@ sourceSets {
 dependencies {
 	implementation "org.zkoss.zk:zk:${zkVersion}"
 	implementation "org.zkoss.zk:zkbind:${zkVersion}"
-	implementation "org.zkoss.zk:zkex:${zkVersion}"    /*ZK PE*/
 	implementation "org.zkoss.zk:zkmax:${zkVersion}"   /*ZK EE*/
 	implementation "org.zkoss.zk:zuti:${zkVersion}"    /*optional enable for shadow elements support */
 //	implementation "org.zkoss.zk:zhtml:${zkVersion}"   /*optional enable for xhtml component support */
 //	implementation "org.zkoss.zk:zkplus:${zkVersion}"  /*optional enable for 3rd party framework integration support */
 
 	implementation "commons-io:commons-io:${commonsIoVersion}"
-
-	testImplementation "org.zkoss.zats:zats-mimic-ext7:${zatsVersion}"
-
-	testImplementation "junit:junit:${junitVersion}"
 
 	jettyRunnerRuntimeOnly "org.eclipse.jetty:jetty-runner:${jettyVersion}"
 	jettyRunnerRuntimeOnly "javax.websocket:javax.websocket-api:${websocketApiVersion}"
