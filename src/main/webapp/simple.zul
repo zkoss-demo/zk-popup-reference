@@ -1,6 +1,6 @@
 <?style src="simple.css"?>
 <?import zk.example.Closeable?>
-<?import zk.example.ToggleClass?>
+<?import zk.example.HoverToggleClass?>
 <zk>
     <!-- apply Closable composer - new instance -->
     <label value="click to detach" apply="zk.example.Closeable"/>
@@ -9,18 +9,18 @@
     <label value="click to detach" apply="${Closeable.instance}"/>
     <separator/>
     <!-- call a static factory method with a parameter -->
-    <label value="hover to highlight" apply="${ToggleClass.instanceFor('highlight')}"/>
+    <label value="hover to highlight" apply="${HoverToggleClass.instanceFor('highlight')}"/>
     <separator/>
     <!-- combine multiple behavior instances-->
-    <div apply="${[Closeable.instance, ToggleClass.instanceFor('detachable')]}">
+    <div apply="${[Closeable.instance, HoverToggleClass.instanceFor('detachable')]}">
         <groupbox title="some more complex UI">
             <label value="both applied"/>
         </groupbox>
     </div>
     <separator/>
     <!-- stop closing in an onClose listener -->
-    <div apply="${[Closeable.instance, ToggleClass.instanceFor('detachable')]}"
-        onClose="event.stopPropagation();">
+    <div apply="${[Closeable.instance, HoverToggleClass.instanceFor('detachable')]}"
+         onClose="event.stopPropagation();">
         <groupbox title="some more complex UI">
             <label value="component not detaching"/>
         </groupbox>

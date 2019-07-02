@@ -1,5 +1,4 @@
-<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
-<?import zk.example.popupref.PopupReferenceControl?>
+<?import zk.example.PopupReference?>
 <zk>
 	<div viewModel="@id('vm') @init('zk.example.popupref.ListitemContextVM')">
 		<listbox model="@init(vm.model)" checkmark="true" width="400px" onSelect="@command('handleSelection')">
@@ -18,14 +17,14 @@
 			</template>
 		</listbox>
 
-		<!-- PopupReferenceControl created in ZUL -->
-		<menupopup id="menupopup1" apply="${PopupReferenceControl.forLambda(li -> li.value)}"><!-- shortcut for the above using a custom xel-method -->
+		<!-- PopupReference created in ZUL -->
+		<menupopup id="menupopup1" apply="${PopupReference.forLambda(li -> li.value)}">
 			<menuitem label="Menuitem 1" onClick="@command('contextClick1', contextLocale=popupReference)" />
 			<menuitem label="Menuitem 2" onClick="@command('contextClick2')" />
 		</menupopup>
 
-		<!-- PopupReferenceControl created in VM -->
-		<menupopup id="menupopup2" apply="${vm.popupReferenceControl}">
+		<!-- PopupReference created in VM -->
+		<menupopup id="menupopup2" apply="${vm.popupReference}">
 			<menuitem label="Menuitem 1" onClick="@command('contextClick1', contextLocale=popupReference)" />
 			<menuitem label="Menuitem 2" onClick="@command('contextClick2')" />
 			<menuitem label="Menuitem 3" onClick="@command('contextClick3')" />

@@ -1,4 +1,4 @@
-package zk.example.popupref;
+package zk.example;
 
 import org.zkoss.zel.LambdaExpression;
 import org.zkoss.zk.ui.Component;
@@ -8,27 +8,27 @@ import org.zkoss.zul.Popup;
 
 import java.util.function.Function;
 
-public class PopupReferenceControl<C extends Component, D> implements Composer<Popup> {
+public class PopupReference<Comp extends Component, Data> implements Composer<Popup> {
     public static final String POPUP_REFERENCE_ATTR = "popupReference";
 
-    private final Function<C, D> componentDataMapper;
+    private final Function<Comp, Data> componentDataMapper;
     private Popup popup;
 
-    public PopupReferenceControl() {
+    public PopupReference() {
         //by default no mapping, return the reference component unchanged
-        this(comp -> (D) comp);
+        this(comp -> (Data) comp);
     }
 
-    public PopupReferenceControl(Function<C, D> componentDataMapper) {
+    public PopupReference(Function<Comp, Data> componentDataMapper) {
         this.componentDataMapper = componentDataMapper;
     }
 
-    public static <C extends Component, D> PopupReferenceControl<C, D> forMapper(Function<C, D> mapper) {
-        return new PopupReferenceControl<>(mapper);
+    public static <Comp extends Component, Data> PopupReference<Comp, Data> forMapper(Function<Comp, Data> mapper) {
+        return new PopupReference<>(mapper);
     }
 
-    public static <D> PopupReferenceControl<Component, D> forLambda(LambdaExpression lambdaExpression) {
-        return new PopupReferenceControl<>(comp -> (D) lambdaExpression.invoke(comp));
+    public static <Data> PopupReference<Component, Data> forLambda(LambdaExpression lambdaExpression) {
+        return new PopupReference<>(comp -> (Data) lambdaExpression.invoke(comp));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PopupReferenceControl<C extends Component, D> implements Composer<P
         this.popup = comp;
         popup.addEventListener(Events.ON_OPEN, (DeferrableListener<OpenEvent>) event -> {
             if(event.isOpen()) {
-                D referenceData = componentDataMapper.apply((C) event.getReference());
+                Data referenceData = componentDataMapper.apply((Comp) event.getReference());
                 popup.setAttribute(POPUP_REFERENCE_ATTR, referenceData);
             } else {
                 popup.removeAttribute(POPUP_REFERENCE_ATTR);
@@ -44,9 +44,10 @@ public class PopupReferenceControl<C extends Component, D> implements Composer<P
         });
     }
 
-    public D getReference() {
-        return (D) popup.getAttribute(POPUP_REFERENCE_ATTR);
+    public Data getReference() {
+        return (Data) popup.getAttribute(POPUP_REFERENCE_ATTR);
     }
+
 
     interface DeferrableListener<E extends Event> extends EventListener<E>, Deferrable {
         @Override

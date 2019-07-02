@@ -3,20 +3,20 @@ package zk.example;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.Composer;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class ToggleClass implements Composer<Component> {
+public class HoverToggleClass implements Composer<Component> {
     private String cssClass;
 
-    static Map<String, ToggleClass> cache = new HashMap<>();
+    static Map<String, HoverToggleClass> cache = new ConcurrentHashMap<>();
 
-    public ToggleClass(String cssClass) {
+    public HoverToggleClass(String cssClass) {
         this.cssClass = cssClass;
     }
 
-    public static ToggleClass instanceFor(String cssClass) {
-        return cache.computeIfAbsent(cssClass, ToggleClass::new);
+    public static HoverToggleClass instanceFor(String cssClass) {
+        return cache.computeIfAbsent(cssClass, HoverToggleClass::new);
     }
 
     @Override

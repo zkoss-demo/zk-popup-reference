@@ -1,0 +1,12 @@
+<zk>
+    <div id="ctrl">
+        <textbox id="tb1" context="menu"/>
+        <textbox id="tb3" context="menu"/>
+        <textbox id="tb4" context="menu"/>
+        <textbox id="tb5" context="menu"/>
+
+        <menupopup id="menu" apply="zk.example.PopupReferenceSimple">
+            <menuitem id="menuitemClear" label="clear" onClick='popupReference.setValue("")'/>
+        </menupopup>
+    </div>
+</zk>

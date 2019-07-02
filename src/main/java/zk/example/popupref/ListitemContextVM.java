@@ -6,16 +6,17 @@ import org.zkoss.bind.annotation.ScopeParam;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listitem;
+import zk.example.PopupReference;
 
 import java.util.Locale;
 
-import static zk.example.popupref.PopupReferenceControl.POPUP_REFERENCE_ATTR;
-import static zk.example.popupref.PopupReferenceControl.forMapper;
+import static zk.example.PopupReference.POPUP_REFERENCE_ATTR;
+import static zk.example.PopupReference.forMapper;
 
 public class ListitemContextVM {
     private ListModelList<Locale> model = new ListModelList(new Locale[]{Locale.TAIWAN, Locale.GERMANY, Locale.FRANCE});
 
-    private PopupReferenceControl<Listitem, Locale> popupReferenceControl = forMapper(Listitem::getValue);
+    private PopupReference<Listitem, Locale> popupReference = forMapper(Listitem::getValue);
 
     @Command
     public void handleSelection() {
@@ -34,7 +35,7 @@ public class ListitemContextVM {
 
     @Command
     public void contextClick3() {
-        Locale popupReference = popupReferenceControl.getReference();
+        Locale popupReference = this.popupReference.getReference();
         Clients.log("Menuitem 3: clicked for " + popupReference);
     }
 
@@ -42,7 +43,7 @@ public class ListitemContextVM {
         return model;
     }
 
-    public PopupReferenceControl<Listitem, Locale> getPopupReferenceControl() {
-        return popupReferenceControl;
+    public PopupReference<Listitem, Locale> getPopupReference() {
+        return popupReference;
     }
 }
