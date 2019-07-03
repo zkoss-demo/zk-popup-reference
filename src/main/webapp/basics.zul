@@ -1,4 +1,4 @@
-<?style src="simple.css"?>
+<?style src="basics.css"?>
 <?import zk.example.Closeable?>
 <?import zk.example.HoverToggleClass?>
 <zk>

@@ -1,6 +1,6 @@
 <?import zk.example.PopupReference?>
 <zk>
-	<div viewModel="@id('vm') @init('zk.example.popupref.ListitemContextVM')">
+	<div viewModel="@id('vm') @init('zk.example.PopupReferenceListboxVM')">
 		<listbox model="@init(vm.model)" checkmark="true" width="400px" onSelect="@command('handleSelection')">
 			<custom-attributes org.zkoss.zul.listbox.rightSelect="false"/>
 			<listhead>
@@ -23,7 +23,7 @@
 			<menuitem label="Menuitem 2" onClick="@command('contextClick2')" />
 		</menupopup>
 
-		<!-- PopupReference created in VM -->
+		<!-- Alternative PopupReference created in VM -->
 		<menupopup id="menupopup2" apply="${vm.popupReference}">
 			<menuitem label="Menuitem 1" onClick="@command('contextClick1', contextLocale=popupReference)" />
 			<menuitem label="Menuitem 2" onClick="@command('contextClick2')" />

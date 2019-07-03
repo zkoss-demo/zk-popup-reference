@@ -1,23 +1,15 @@
-# ZK Gradle
+# ZK Popup Reference Example
 
-Example ZK project using gradle
+Demonstrates the usage of the `Composer` interface to create composable behaviors
+(e.g. a Popup remembering its Referencing component or custom data)
 
 ## Useful Build Commands
 
-run jetty (with gretty plugin)
-```
-./gradlew appRun
-```
-run jetty (with jetty-runner - faster startup time)
+run jetty (with jetty-runner)
 ```
 ./gradlew startJettyRunner
 ```
-http://localhost:8080/zk-gradle
-
-run tests
-```
-./gradlew test
-```
+http://localhost:8080/
 
 build war
 ```

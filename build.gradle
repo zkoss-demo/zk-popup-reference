@@ -1,18 +1,7 @@
 apply plugin: 'war'
 
-// In this section you declare where to find the dependencies of your project
 repositories {
-//	maven {
-//	credentials { /*e.g. defined in ~/.gradle/gradle.properties*/
-//		username mavenUser
-//		password mavenPassword
-//	}
-////		url "https://maven.zkoss.org/repo/zk/pe" //ZK-PE repo requires login
-//		url "https://maven.zkoss.org/repo/zk/ee" //ZK-EE repo requires login
-//	}
-	maven { url "http://mavensync.zkoss.org/maven2" }
-	maven { url "http://mavensync.zkoss.org/eval" }
-    maven { url "http://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/" } //for jasper reports
+	maven { url 'http://mavensync.zkoss.org/eval' }
 	mavenCentral()
 }
 
@@ -25,26 +14,14 @@ sourceSets {
 	}
 }
 
-// In this section you declare the dependencies for your production and test code
 dependencies {
-	implementation "org.zkoss.zk:zk:${zkVersion}"
-	implementation "org.zkoss.zk:zkbind:${zkVersion}"
-	implementation "org.zkoss.zk:zkmax:${zkVersion}"   /*ZK EE*/
-	implementation "org.zkoss.zk:zuti:${zkVersion}"    /*optional enable for shadow elements support */
-//	implementation "org.zkoss.zk:zhtml:${zkVersion}"   /*optional enable for xhtml component support */
-//	implementation "org.zkoss.zk:zkplus:${zkVersion}"  /*optional enable for 3rd party framework integration support */
-
-	implementation "commons-io:commons-io:${commonsIoVersion}"
-
-	jettyRunnerRuntimeOnly "org.eclipse.jetty:jetty-runner:${jettyVersion}"
-	jettyRunnerRuntimeOnly "javax.websocket:javax.websocket-api:${websocketApiVersion}"
-	jettyRunnerRuntimeOnly "org.eclipse.jetty.websocket:javax-websocket-server-impl:${jettyVersion}"
+	implementation 'org.zkoss.zk:zkbind:8.6.2-Eval'
+	jettyRunnerRuntimeOnly 'org.eclipse.jetty:jetty-runner:9.4.19.v20190610'
 }
 
 //launch Jetty using jetty-runner
 task startJettyRunner(type: JavaExec) {
 	classpath = sourceSets.jettyRunner.runtimeClasspath
 	main 'org.eclipse.jetty.runner.Runner'
-	args '--path', "/${rootProject.name}", 'jetty-dev-context.xml'
-//	args '--path', "/${rootProject.name}", 'src/main/webapp'
+	args 'src/main/webapp'
 }
