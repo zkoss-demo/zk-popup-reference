@@ -1,7 +1,7 @@
 # ZK Popup Reference Example
 
 Demonstrates the usage of the `Composer` interface to create composable behaviors
-(e.g. a Popup remembering its Referencing component or custom data)
+(e.g. a Popup remembering its referencing component or arbitrary object)
 
 ## Useful Build Commands
 
